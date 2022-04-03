@@ -1,7 +1,7 @@
 import discord
 import time
 from discord.ext import commands
-import credentials
+import credentials  # local file with all credentials
 from generator import Screenshoter
 from PIL import Image
 import datetime
