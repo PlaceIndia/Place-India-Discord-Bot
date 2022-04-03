@@ -20,7 +20,10 @@ async def on_ready():
         im = im.crop((0, 100, im.width-10, im.height))
         im.save('yo.png')
         await channle.send(f'our region as of {datetime.datetime.now()}', file=discord.File("yo.png"))
-        print('sent ss')
+        message = await channle.history(limit=1).flatten()
+        await message[0].publish()
+        print(message)
+
         time.sleep(180)
 
 
