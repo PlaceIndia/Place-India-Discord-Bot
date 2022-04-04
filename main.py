@@ -2,9 +2,10 @@ import discord
 import time
 from discord.ext import commands
 import credentials  # local file with all credentials
-from generator import Screenshoter
+from generator import Screenshoter, Screenshoter2
 from PIL import Image
 import datetime
+
 
 client = commands.Bot(command_prefix="i ")
 client.remove_command('help')
@@ -14,8 +15,11 @@ client.remove_command('help')
 async def on_ready():
     print("im alive and working!!(logged in as {0.user})".format(client))
     channle = await client.fetch_channel(credentials.channle_id)
+    channle2 = await client.fetch_channel(credentials.channle_id2)
     while True:
         Screenshoter()
+        Screenshoter2()
+
         im = Image.open('yo.png')
         im = im.crop((0, 100, im.width-10, im.height))
         im.save('yo.png')
@@ -23,6 +27,14 @@ async def on_ready():
         message = await channle.history(limit=1).flatten()
         await message[0].publish()
         print(message)
+
+        im2 = Image.open('yo2.png')
+        im2 = im2.crop((0, 100, im2.width-10, im2.height))
+        im2.save('yo.png')
+        await channle2.send(f'our region as of {datetime.datetime.now()}', file=discord.File("yo2.png"))
+        message2 = await channle2.history(limit=1).flatten()
+        await message2[0].publish()
+        print(message2)
 
         time.sleep(180)
 
