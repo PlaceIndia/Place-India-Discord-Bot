@@ -15,10 +15,10 @@ client.remove_command('help')
 async def on_ready():
     print("im alive and working!!(logged in as {0.user})".format(client))
     channle = await client.fetch_channel(credentials.channle_id)
-    channle2 = await client.fetch_channel(credentials.channle_id2)
+    # channle2 = await client.fetch_channel(credentials.channle_id2)
     while True:
         Screenshoter()
-        Screenshoter2()
+        # Screenshoter2()
 
         im = Image.open('yo.png')
         im = im.crop((0, 100, im.width-10, im.height))
@@ -26,16 +26,18 @@ async def on_ready():
         await channle.send(f'our region as of {datetime.datetime.now()}', file=discord.File("yo.png"))
         message = await channle.history(limit=1).flatten()
         await message[0].publish()
-        print(message)
+        print('sui')
 
+        '''
         im2 = Image.open('yo2.png')
         im2 = im2.crop((0, 100, im2.width-10, im2.height))
         im2.save('yo.png')
         await channle2.send(f'our region as of {datetime.datetime.now()}', file=discord.File("yo2.png"))
         message2 = await channle2.history(limit=1).flatten()
         await message2[0].publish()
-        print(message2)
 
+        print(f'sent at {datetime.dateime.now()}')
+        '''
         time.sleep(180)
 
 
