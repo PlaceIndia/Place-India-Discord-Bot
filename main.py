@@ -26,9 +26,8 @@ async def on_ready():
         im2 = Image.open('yo2.png')
         im2 = im2.crop((0, 100, im2.width-10, im2.height))
         im2.save('yo2.png')
-        await channle.send(f'our region as of {datetime.datetime.now()}', files=[discord.File("yo.png"),discord.File("yo2.png")])
-        message = await channle.history(limit=1).flatten()
-        await message[0].publish()
+        message = await channle.send(f'our region as of {datetime.datetime.now()}', files=[discord.File("yo.png"),discord.File("yo2.png")])
+        await message.publish()
         print('sui')
 
         '''
